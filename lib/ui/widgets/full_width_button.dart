@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:health_for_workout/core/style.dart';
 
 class FullWidthButton extends StatelessWidget {
   const FullWidthButton({super.key, required this.onTap, required this.child});
@@ -13,7 +12,7 @@ class FullWidthButton extends StatelessWidget {
       onTap: onTap,
       child: Ink(
         decoration: BoxDecoration(
-          color: MyColors.lightBlack,
+          color: Colors.white24,
           borderRadius: BorderRadius.all(Radius.circular(5)),
         ),
         child: Container(
