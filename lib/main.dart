@@ -11,7 +11,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData.dark(),
+      theme: ThemeData.dark().copyWith(
+        textTheme: TextTheme(
+          titleLarge: TextStyle(fontFamily: 'GowunDodum'),
+          bodyMedium: TextStyle(fontFamily: 'GowunDodum'),
+        )
+      ),
       home: HomeScreen(),
     );
   }
