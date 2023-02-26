@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:health_for_workout/ui/widgets/full_width_card_widget.dart';
 import 'package:health_for_workout/ui/widgets/simple_button.dart';
+import 'package:health_for_workout/ui/workout/workout_recording_screen.dart';
 
 class WorkoutSettingsScreen extends StatefulWidget {
   const WorkoutSettingsScreen({super.key});
@@ -177,7 +178,9 @@ class _WorkoutSettingsScreenState extends State<WorkoutSettingsScreen> {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: SimpleButton(
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => WorkoutRecordingScreen()));
+                  },
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
