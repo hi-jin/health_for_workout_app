@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:health_for_workout/core/style.dart';
 import 'package:health_for_workout/ui/utils/date.dart';
 import 'package:health_for_workout/ui/widgets/date_status_card.dart';
 import 'package:health_for_workout/ui/widgets/full_width_button.dart';
