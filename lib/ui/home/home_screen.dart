@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:health_for_workout/core/style.dart';
 import 'package:health_for_workout/ui/utils/date.dart';
 import 'package:health_for_workout/ui/widgets/date_status_card.dart';
@@ -41,28 +42,49 @@ class HomeScreen extends StatelessWidget {
                   onTap: () {
                     Navigator.push(context, MaterialPageRoute(builder: (context) => WorkoutSettingsScreen()));
                   },
-                  child: Text(
-                    '운동 기록하기',
-                    style: TextStyle(fontSize: 22),
-                    textAlign: TextAlign.center,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Icon(FontAwesomeIcons.personRunning),
+                      const SizedBox(width: 10),
+                      Text(
+                        '운동 기록하기',
+                        style: TextStyle(fontSize: 22),
+                        textAlign: TextAlign.center,
+                      ),
+                    ],
                   ),
                 ),
                 const SizedBox(height: 10),
                 FullWidthButton(
                   onTap: () {},
-                  child: Text(
-                    '식단 기록하기',
-                    style: TextStyle(fontSize: 22),
-                    textAlign: TextAlign.center,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Icon(FontAwesomeIcons.bowlFood),
+                      const SizedBox(width: 10),
+                      Text(
+                        '식단 기록하기',
+                        style: TextStyle(fontSize: 22),
+                        textAlign: TextAlign.center,
+                      ),
+                    ],
                   ),
                 ),
                 const SizedBox(height: 10),
                 FullWidthButton(
                   onTap: () {},
-                  child: Text(
-                    '통계 보기',
-                    style: TextStyle(fontSize: 22),
-                    textAlign: TextAlign.center,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Icon(FontAwesomeIcons.bars),
+                      const SizedBox(width: 10),
+                      Text(
+                        '통계 보기',
+                        style: TextStyle(fontSize: 22),
+                        textAlign: TextAlign.center,
+                      ),
+                    ],
                   ),
                 ),
               ],
