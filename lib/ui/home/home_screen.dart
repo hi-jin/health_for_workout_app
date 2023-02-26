@@ -4,6 +4,7 @@ import 'package:health_for_workout/ui/utils/date.dart';
 import 'package:health_for_workout/ui/widgets/date_status_card.dart';
 import 'package:health_for_workout/ui/widgets/full_width_button.dart';
 import 'package:health_for_workout/ui/widgets/full_width_card_widget.dart';
+import 'package:health_for_workout/ui/workout/workout_settings_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -37,7 +38,9 @@ class HomeScreen extends StatelessWidget {
                 Divider(color: Colors.white),
                 const SizedBox(height: 20),
                 FullWidthButton(
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => WorkoutSettingsScreen()));
+                  },
                   child: Text(
                     '운동 기록하기',
                     style: TextStyle(fontSize: 22),
