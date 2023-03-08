@@ -81,18 +81,12 @@ class _WorkoutSettingsScreenState extends State<WorkoutSettingsScreen> {
               const SizedBox(height: 40),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: SimpleButton(
+                child: _IconTextButton(
                   onTap: () {
                     Navigator.push(context, MaterialPageRoute(builder: (context) => WorkoutRecordingScreen()));
                   },
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Text('운동 시작', style: TextStyle(fontSize: 20)),
-                      const SizedBox(width: 10),
-                      Icon(FontAwesomeIcons.dumbbell),
-                    ],
-                  ),
+                  text: '운동 시작',
+                  icon: const Icon(FontAwesomeIcons.dumbbell),
                 ),
               ),
             ],
@@ -155,6 +149,34 @@ class _TimerDetailInputWidget extends StatelessWidget {
           ),
           const SizedBox(width: 10),
           Text('초', style: TextStyle(fontSize: 18)),
+        ],
+      ),
+    );
+  }
+}
+
+class _IconTextButton extends StatelessWidget {
+  final void Function()? onTap;
+  final Widget icon;
+  final String text;
+
+  const _IconTextButton({
+    super.key,
+    required this.onTap,
+    required this.icon,
+    required this.text,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return SimpleButton(
+      onTap: onTap,
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(text, style: TextStyle(fontSize: 20)),
+          const SizedBox(width: 10),
+          icon,
         ],
       ),
     );
