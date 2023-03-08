@@ -31,65 +31,65 @@ class HomeScreen extends StatelessWidget {
             child: Column(
               children: [
                 _DateCountWidget(daysExercised: daysExercised),
-                const SizedBox(height: 5),
-                Divider(color: Colors.white),
+                Divider(color: Colors.white, height: 20),
                 _RecordsOfTheWeekWidget(recordsOfTheWeek: recordsOfTheWeek),
-                const SizedBox(height: 5),
-                Divider(color: Colors.white),
+                Divider(color: Colors.white, height: 20),
                 const SizedBox(height: 20),
-                FullWidthButton(
+                _IconTextButton(
                   onTap: () {
                     Navigator.push(context, MaterialPageRoute(builder: (context) => WorkoutSettingsScreen()));
                   },
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Icon(FontAwesomeIcons.personRunning),
-                      const SizedBox(width: 10),
-                      Text(
-                        '운동 기록하기',
-                        style: TextStyle(fontSize: 22),
-                        textAlign: TextAlign.center,
-                      ),
-                    ],
-                  ),
+                  icon: const Icon(FontAwesomeIcons.personRunning),
+                  text: '운동 기록하기',
                 ),
                 const SizedBox(height: 10),
-                FullWidthButton(
+                _IconTextButton(
                   onTap: () {},
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Icon(FontAwesomeIcons.bowlFood),
-                      const SizedBox(width: 10),
-                      Text(
-                        '식단 기록하기',
-                        style: TextStyle(fontSize: 22),
-                        textAlign: TextAlign.center,
-                      ),
-                    ],
-                  ),
+                  icon: const Icon(FontAwesomeIcons.bowlFood),
+                  text: '식단 기록하기',
                 ),
                 const SizedBox(height: 10),
-                FullWidthButton(
+                _IconTextButton(
                   onTap: () {},
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Icon(FontAwesomeIcons.bars),
-                      const SizedBox(width: 10),
-                      Text(
-                        '통계 보기',
-                        style: TextStyle(fontSize: 22),
-                        textAlign: TextAlign.center,
-                      ),
-                    ],
-                  ),
+                  icon: const Icon(FontAwesomeIcons.bars),
+                  text: '통계 보기',
                 ),
               ],
             ),
           ),
         ),
+      ),
+    );
+  }
+}
+
+class _IconTextButton extends StatelessWidget {
+  const _IconTextButton({
+    super.key,
+    required this.onTap,
+    required this.icon,
+    required this.text,
+  });
+
+  final void Function()? onTap;
+  final Widget icon;
+  final String text;
+
+  @override
+  Widget build(BuildContext context) {
+    return FullWidthButton(
+      onTap: onTap,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          icon,
+          const SizedBox(width: 10),
+          Text(
+            text,
+            style: TextStyle(fontSize: 22),
+            textAlign: TextAlign.center,
+          ),
+        ],
       ),
     );
   }
