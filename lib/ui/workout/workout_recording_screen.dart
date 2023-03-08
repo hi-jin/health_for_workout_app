@@ -46,32 +46,16 @@ class _WorkoutRecordingScreenState extends State<WorkoutRecordingScreen> {
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        FullWidthCardWidget(
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Text('총 운동 시간', style: TextStyle(fontSize: 18)),
-                              if (workoutStartedAt != null)
-                                Text(
-                                  '${now.difference(workoutStartedAt).inMinutes}분 ${now.difference(workoutStartedAt).inSeconds % 60}초',
-                                  style: TextStyle(fontSize: 20),
-                                ),
-                            ],
-                          ),
+                        _TimerDisplayWidget(
+                          title: '총 운동 시간',
+                          minutes: (workoutStartedAt != null) ? now.difference(workoutStartedAt).inMinutes : null,
+                          seconds: (workoutStartedAt != null) ? now.difference(workoutStartedAt).inSeconds % 60 : null,
                         ),
                         const SizedBox(height: 10),
-                        FullWidthCardWidget(
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Text('현재 세트', style: TextStyle(fontSize: 18)),
-                              if (currentSetStartedAt != null)
-                                Text(
-                                  '${now.difference(currentSetStartedAt).inMinutes}분 ${now.difference(currentSetStartedAt).inSeconds % 60}초',
-                                  style: TextStyle(fontSize: 20),
-                                ),
-                            ],
-                          ),
+                        _TimerDisplayWidget(
+                          title: '현재 세트',
+                          minutes: (currentSetStartedAt != null) ? now.difference(currentSetStartedAt).inMinutes : null,
+                          seconds: (currentSetStartedAt != null) ? now.difference(currentSetStartedAt).inSeconds % 60 : null,
                         ),
                       ],
                     ),
@@ -168,6 +152,36 @@ class _WorkoutRecord extends StatelessWidget {
             ],
           ),
           Text('${reps}회', style: TextStyle(fontSize: 18)),
+        ],
+      ),
+    );
+  }
+}
+
+class _TimerDisplayWidget extends StatelessWidget {
+  const _TimerDisplayWidget({
+    super.key,
+    required this.title,
+    required this.minutes,
+    required this.seconds,
+  });
+
+  final String title;
+  final int? minutes;
+  final int? seconds;
+
+  @override
+  Widget build(BuildContext context) {
+    return FullWidthCardWidget(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text('총 운동 시간', style: TextStyle(fontSize: 18)),
+          if (minutes != null && seconds != null)
+            Text(
+              '${minutes}분 ${seconds}초',
+              style: TextStyle(fontSize: 20),
+            ),
         ],
       ),
     );
