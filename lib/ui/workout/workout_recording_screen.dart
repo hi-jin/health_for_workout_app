@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:health_for_workout/core/style.dart';
 import 'package:health_for_workout/ui/widgets/full_width_button.dart';
 import 'package:health_for_workout/ui/widgets/full_width_card_widget.dart';
@@ -15,6 +16,9 @@ class _WorkoutRecordingScreenState extends State<WorkoutRecordingScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final _workoutNameController = TextEditingController();
+    final _weightController = TextEditingController();
+
     final now = DateTime.now();
     final DateTime? workoutStartedAt = DateTime(now.year, now.month, now.day, now.hour, now.minute - 32, now.second - 11);
     final DateTime? currentSetStartedAt = DateTime(now.year, now.month, now.day, now.hour, now.minute - 1, now.second - 3);
@@ -65,21 +69,15 @@ class _WorkoutRecordingScreenState extends State<WorkoutRecordingScreen> {
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        TextField(
-                          decoration: InputDecoration(
-                            labelText: '운동 종목 입력',
-                            border: OutlineInputBorder(),
-                            focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.white)),
-                          ),
+                        _LabeledTextField(
+                          controller: _workoutNameController,
+                          labelText: '운동 종목 입력',
                         ),
                         const SizedBox(height: 10),
-                        TextField(
-                          keyboardType: TextInputType.number,
-                          decoration: InputDecoration(
-                            labelText: '무게 입력 (kg)',
-                            border: OutlineInputBorder(),
-                            focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.white)),
-                          ),
+                        _LabeledTextField(
+                          controller: _weightController,
+                          labelText: '무게 입력 (kg)',
+                          onlyNumber: true,
                         ),
                         const SizedBox(height: 10),
                         FullWidthButton(
@@ -153,6 +151,33 @@ class _WorkoutRecord extends StatelessWidget {
           ),
           Text('${reps}회', style: TextStyle(fontSize: 18)),
         ],
+      ),
+    );
+  }
+}
+
+class _LabeledTextField extends StatelessWidget {
+  final TextEditingController controller;
+  final String labelText;
+  final bool onlyNumber;
+
+  const _LabeledTextField({
+    super.key,
+    required this.controller,
+    required this.labelText,
+    this.onlyNumber = false,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return TextField(
+      controller: controller,
+      keyboardType: (onlyNumber) ? TextInputType.number : null,
+      inputFormatters: (onlyNumber) ? [FilteringTextInputFormatter.digitsOnly] : null,
+      decoration: InputDecoration(
+        labelText: labelText,
+        border: OutlineInputBorder(),
+        focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.white)),
       ),
     );
   }
